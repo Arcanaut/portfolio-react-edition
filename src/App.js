@@ -1,17 +1,42 @@
-
 import React, { useState } from 'react';
-import './App.css';
-import Modal from "./components/Modal/Modal"
+import Nav from './components/Nav';
+// import About from './components/About';
+// import Gallery from './components/Gallery';
+import Modal from './components/Modal'
+
 
 function App() {
-  const [openModal, setOpenModal ] = useState(false)
+  const [contactSelected, setContactSelected] = useState(false);
+  const [categories] = useState([
+    {
+      name: 'commercial',
+      description: 'Photos of grocery stores, food trucks, and other commercial projects',
+    },
+    { name: 'Front End' },
+    { name: 'Back End' },
+    { name: 'Full Stack' },
+  ]);
+  
+  const [currentCategory, setCurrentCategory] = useState(categories[0]);
+
   return (
-    <div className="App">
-      <h1>Click to open modal</h1>
-      <button className="openModalBtn" onClick={ () => {setOpenModal(true)}}>
-      Open
-      </button>
-      {openModal && <Modal closeModal={setOpenModal}/>}
+    <div>
+      <Nav
+  categories={categories}
+  setCurrentCategory={setCurrentCategory}
+  currentCategory={currentCategory}
+  contactSelected={contactSelected}
+  setContactSelected={setContactSelected}
+></Nav>
+      <main>
+        <div>
+    {/* <Gallery currentCategory={currentCategory}></Gallery> */}
+    {/* <About></About> */}
+    <Modal>Yosemite Mudflap</Modal>
+ 
+
+        </div>
+      </main>
     </div>
   );
 }
